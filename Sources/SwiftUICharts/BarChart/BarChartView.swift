@@ -49,10 +49,6 @@ public struct BarChartView: View {
 
     public var body: some View {
         ZStack {
-            Rectangle()
-                .fill(self.colorScheme == .dark ? self.darkModeStyle.backgroundColor : self.style.backgroundColor)
-                .cornerRadius(20)
-                .shadow(color: self.style.dropShadowColor, radius: self.dropShadow ? 8 : 0)
             VStack(alignment: .leading) {
                 HStack {
                     if !showValue {
@@ -101,7 +97,7 @@ public struct BarChartView: View {
                     self.touchLocation = value.location.x / self.formSize.width
                     self.showValue = true
                     self.currentValue = self.getCurrentValue()?.1 ?? 0
-                    if self.data.valuesGiven && self.formSize == ChartForm.medium {
+                    if self.data.valuesGiven {
                         self.showLabelValue = true
                     }
                 })
