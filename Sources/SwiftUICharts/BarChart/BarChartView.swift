@@ -108,8 +108,7 @@ public struct BarChartView: View {
                     self.touchLocation = -1
                 })
             )
-            .gesture(TapGesture()
-            ).padding(0)
+            .padding(0)
     }
 
     func getArrowOffset(touchLocation: CGFloat) -> Binding<CGFloat> {
