@@ -13,6 +13,7 @@ public struct BarChartView: View {
     private var data: ChartData
     public var title: String
     public var legend: String?
+    public var rightLegend: String?
     public var style: ChartStyle
     public var darkModeStyle: ChartStyle
     public var formSize: CGSize
@@ -35,10 +36,11 @@ public struct BarChartView: View {
         return formSize == ChartForm.large
     }
 
-    public init(data: ChartData, title: String, legend: String? = nil, style: ChartStyle = Styles.barChartStyleOrangeLight, form: CGSize? = ChartForm.medium, dropShadow: Bool? = true, cornerImage: Image? = Image(systemName: "waveform.path.ecg"), valueSpecifier: String? = "%.1f") {
+    public init(data: ChartData, title: String, legend: String? = nil, rightLegend: String? = nil, style: ChartStyle = Styles.barChartStyleOrangeLight, form: CGSize? = ChartForm.medium, dropShadow: Bool? = true, cornerImage: Image? = Image(systemName: "waveform.path.ecg"), valueSpecifier: String? = "%.1f") {
         self.data = data
         self.title = title
         self.legend = legend
+        self.rightLegend = rightLegend
         self.style = style
         darkModeStyle = Styles.getDarkStyle(lightStyle: style)
         formSize = form!
@@ -78,10 +80,19 @@ public struct BarChartView: View {
                             gradient: self.colorScheme == .dark ? self.darkModeStyle.gradientColor : self.style.gradientColor,
                             touchLocation: self.$touchLocation)
                 if self.legend != nil && !self.showLabelValue {
-                    Text(self.legend!)
-                        .font(.headline)
-                        .foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.legendTextColor : self.style.legendTextColor)
-                        .padding()
+                    HStack {
+                        Text(self.legend!)
+                            .font(.headline)
+                            .foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.legendTextColor : self.style.legendTextColor)
+                            .padding()
+                        
+                        Spacer()
+                        
+                        Text(self.rightLegend!)
+                            .font(.headline)
+                            .foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.legendTextColor : self.style.legendTextColor)
+                            .padding()
+                    }
                 } else if self.data.valuesGiven && self.getCurrentValue() != nil {
                     LabelView(arrowOffset: self.getArrowOffset(touchLocation: self.touchLocation),
                               title: .constant(self.getCurrentValue()!.0))
