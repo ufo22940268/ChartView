@@ -88,7 +88,7 @@ public struct BarChartView: View {
                         
                         Spacer()
                         
-                        Text(self.rightLegend!)
+                        Text(self.rightLegend ?? "")
                             .font(.headline)
                             .foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.legendTextColor : self.style.legendTextColor)
                             .padding()
