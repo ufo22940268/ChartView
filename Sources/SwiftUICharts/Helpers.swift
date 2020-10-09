@@ -285,9 +285,9 @@ class HapticFeedback {
         }
     #else
         // iOS implementation
-        let selectionFeedbackGenerator = UISelectionFeedbackGenerator()
+//        let selectionFeedbackGenerator = UISelectionFeedbackGenerator()
         static func playSelection() {
-            UISelectionFeedbackGenerator().selectionChanged()
+//            UISelectionFeedbackGenerator().selectionChanged()
         }
     #endif
 }
