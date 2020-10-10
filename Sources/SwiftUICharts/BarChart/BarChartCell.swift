@@ -26,7 +26,7 @@ public struct BarChartCell : View {
             RoundedRectangle(cornerRadius: 4)
                 .fill(LinearGradient(gradient: gradient?.getGradient() ?? GradientColor(start: accentColor, end: accentColor).getGradient(), startPoint: .bottom, endPoint: .top))
             }
-            .frame(width: CGFloat(self.cellWidth))
+//            .frame(width: CGFloat(self.cellWidth))
 		.scaleEffect(CGSize(width: 1, height: self.value), anchor: .bottom)
             .onAppear(){
                 self.scaleValue = self.value
